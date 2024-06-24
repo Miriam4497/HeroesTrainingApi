@@ -7,9 +7,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using HeroesTrainingApi.dto;
+//using HeroesTrainingApi.dto;
 using Microsoft.Extensions.Configuration;
-
+using HeroesTraining.DTO
 
 namespace HeroesTrainingApi.Controllers
 {
@@ -46,9 +46,11 @@ namespace HeroesTrainingApi.Controllers
                 return Unauthorized();
             }
 
-            var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
+            GetTokenRequestValidator _validator = new GetTokenRequestValidator();
+            var validResult = _validator.Validate(request.Password);
+      
 
-            if (!passwordValid)
+            if (!validResult.IsValid)
             {
                 //401 or 400
                 return Unauthorized();
@@ -88,7 +90,7 @@ namespace HeroesTrainingApi.Controllers
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var resp = new AuthorizationResponse
+            var resp = new AuthorizationResponseDTO
             {
                 UserId = userId,
                 AuthorizationToken = encodedJwt,

@@ -10,6 +10,6 @@ namespace HeroesTraining.DL
 {
     public interface ITrainHeroesDL
     {
-        public AddTrainHeroes(TrainHeroes trainHeroes);
+        public string AddTrainHeroes(TrainHeroes trainHeroes);
     }
 }

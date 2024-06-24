@@ -19,9 +19,5 @@ namespace HeroesTraining.DL
             return await _trainingContext.Heroes.ToListAsync();
         }
 
-        public async Task UpdateHeroes(int id,int numOnce)
-        {
-            _trainingContext.Find()
-        }
     }
 }

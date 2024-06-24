@@ -14,12 +14,13 @@ namespace HeroesTraining.DL
             _trainingContext= heroesTrainingContext;
         }
 
-        public async Task AddTrainHeroes(TrainHeroes trainHeroes)
+        public async Task string AddTrainHeroes(TrainHeroes trainHeroes)
         {
             try
             {
                 await _trainingContext.TrainHeroes.Addasync(trainHeroes);  
-                await _trainingContext.SaveChangesAsync();  
+                await _trainingContext.SaveChangesAsync();
+
             }
             catch (Exception ex)
             {

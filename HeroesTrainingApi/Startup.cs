@@ -30,6 +30,8 @@ namespace HeroesTrainingApi
             services.AddScoped<ITrainHeroesBL, TrainHeroesBL>;
             services.AddScoped<IHeroesDL, HeroesDL>;
 
+            services.AddValidatorsFromAssemblyContaining<GetTokenRequestValidator>();
+
 
         }
 
