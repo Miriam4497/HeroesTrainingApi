@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HeroesTraining.DL
 {
-    public class HeroesDL:IHeroesDL  
+    public class TrainHeroesDL : ITrainHeroesDL
     {
         private HeroesTrainingContext _trainingContext;
 
@@ -14,14 +14,20 @@ namespace HeroesTraining.DL
             _trainingContext= heroesTrainingContext;
         }
 
-        public async Task<List<Heroes>> GetHeroes()
+        public async Task AddTrainHeroes(TrainHeroes trainHeroes)
         {
-            return await _trainingContext.Heroes.ToListAsync();
+            try
+            {
+                await _trainingContext.TrainHeroes.Addasync(trainHeroes);  
+                await _trainingContext.SaveChangesAsync();  
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
         }
 
-        public async Task UpdateHeroes(int id,int numOnce)
-        {
-            _trainingContext.Find()
-        }
     }
 }

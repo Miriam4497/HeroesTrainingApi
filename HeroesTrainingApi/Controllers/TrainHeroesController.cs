@@ -9,9 +9,8 @@ namespace HeroesTrainingApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private IHeroesBL _heroesBL;
+        private ITrainHeroesBL _trainHeroesBL;
 
-        // GET: api/<ValuesController>
         [HttpGet]
         public  async Task <ActionResult< IEnumerable<HeroesDTO>>> Get()
         {
@@ -35,8 +34,22 @@ namespace HeroesTrainingApi.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async void Post([FromBody] TrainHeroesDTO trainHeroesDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                await _trainHeroesBL.AddTrainHeroes(trainHeroesDTO);
+                return Ok(trainHeroesDTO);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         // PUT api/<ValuesController>/5

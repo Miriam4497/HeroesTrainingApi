@@ -1,6 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using AutoMapper;
-using HeroesTrainingApi.dto;
+using HeroesTraining.Entities;
+using HeroesTraining.DL;
+using HeroesTraining.BL;
+using HeroesTraining.DTO;
+
+
 
 namespace HeroesTrainingApi
 {
@@ -13,14 +19,19 @@ namespace HeroesTrainingApi
 
         public IConfiguration Configuration { get; }
 
-        //public void ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddControllers();
-        //    services.AddAutoMapper();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
 
-        //    services.AddScoped<IHeroesBL, HeroesBL>;
+            services.AddScoped<IHeroesBL, HeroesBL>;
+            services.AddScoped<IHeroesDL, HeroesDL>;
 
-        //}
+            services.AddScoped<ITrainHeroesBL, TrainHeroesBL>;
+            services.AddScoped<IHeroesDL, HeroesDL>;
+
+
+        }
 
         public void Configure(IApplicationBuilder app)
         {

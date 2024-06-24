@@ -21,6 +21,8 @@ namespace HeroesTraining.DL
         }
 
         public virtual DbSet<Heroes> Heroes { get; set; }   
+        public virtual DbSet<TrainHeroes> TrainHeroes { get; set; }   
+
 
         //protected override void onModelCreating(ModelBuilder modelBuilder)
         //{
